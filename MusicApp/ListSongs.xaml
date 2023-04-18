@@ -1,0 +1,54 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.ListSongs"
+             Title="List Song">
+    <Grid RowDefinitions="*,auto">
+        <ListView x:Name="listSongs" Grid.Row="0" BackgroundColor="White" ItemSelected="ItemSong">
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ViewCell >
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Small" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid x:Name="bottomMusic" IsVisible="false" RowDefinitions="*,auto" Grid.Row="1" Padding="10" BackgroundColor="{StaticResource Gray100}">
+            <Grid ColumnDefinitions="auto,*">
+                <Grid ColumnDefinitions="50,*">
+                    <Image HeightRequest="60" Aspect="Fill" Source="musicpng.png"></Image>
+                    <StackLayout Grid.Column="1" VerticalOptions="Center" Margin="10,0">
+                        <Label Text="{Binding Title}" ></Label>
+                        <Label FontSize="11" TextColor="{StaticResource Gray500}" Text="{Binding Artist}"></Label>
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <HorizontalStackLayout HorizontalOptions="End">
+                        <ImageButton Source="back.svg" WidthRequest="20" Margin="5" Clicked="Button_BackMusic"></ImageButton>
+                        <Button BackgroundColor="Black" Command="{Binding PauseCommand}"
+                    HeightRequest="50" SemanticProperties.Hint="Start playing"
+                    Text="{Binding PlayButtonText}" TextColor="White" WidthRequest="50" />
+                        <ImageButton Source="next.svg" WidthRequest="20" Margin="5" Clicked="Button_NextMusic"></ImageButton>
+                        <ImageButton x:Name="repeatButton" Source="repeatoff.svg" WidthRequest="20" Margin="5" Clicked="Button_RepeatMusic"></ImageButton>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="*,auto">
+                <ProgressBar x:Name="progressBar" Progress="{Binding CurrentPosition}" ProgressColor="White">
+                    <ProgressBar.GestureRecognizers>
+                        <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+                    </ProgressBar.GestureRecognizers>
+                </ProgressBar>
+                <Label Grid.Column="1" Text="{Binding DurationString}" HorizontalOptions="End" Margin="10"></Label>
+            </Grid>
+        </Grid>
+    
+    </Grid>
+</ContentPage>

@@ -1,0 +1,31 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"  
+             x:Class="MusicApp.CreatePopup"
+              >
+
+
+    <Frame VerticalOptions="Fill"
+           HorizontalOptions="Fill"
+           BackgroundColor="LightGray"
+           Padding="10">
+        <VerticalStackLayout Spacing="10" >
+            <CollectionView x:Name="PlaylistsItem" ItemsSource="{Binding myListView}" 
+                            SelectionMode="Single" SelectionChanged="addMusicToPlayList" 
+                            VerticalOptions="FillAndExpand" WidthRequest="200"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="10">
+                            <Label Text="{Binding Name}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Entry x:Name="NamePlayList" Placeholder="New Play List Name" />
+            <Button Text="Create Playlist" Clicked="CreatePlaylistButton_Clicked" />
+        </VerticalStackLayout>
+    </Frame>
+
+</toolkit:Popup>

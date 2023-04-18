@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicApp.PlayLists"
+              Shell.NavBarIsVisible="False"
+             Title="PlayLists">
+
+    <Grid RowDefinitions="auto,70*,10*" Padding="20">
+        <Grid ColumnDefinitions="*,*,*" Padding="20">
+            <ImageButton HeightRequest="30" Grid.Column="0" HorizontalOptions="Start" Source="home.svg" Clicked="HomePage"/>
+            <ImageButton HeightRequest="30" Grid.Column="1" HorizontalOptions="Center" Source="artist.svg" Clicked="Button_ListArtist"/>
+            <ImageButton HeightRequest="25" Grid.Column="2" HorizontalOptions="End" Source="playlist.svg" />
+        </Grid>
+
+        <ListView x:Name="myListView" Grid.Row="1" BackgroundColor="White" ItemSelected="myPlayList_ItemSelected" >
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ViewCell >
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+
+</ContentPage>
